@@ -7,11 +7,15 @@ const breakfastBurrito = {name: "Breakfast Burrito", price: 16, category:"Breakf
 /* Task 1a: write a function to return more menu items with the same format as the items above. */
 
 function createMenuItem(name, cost, category){
+  return {name, cost, category}
     /* Code here */
 }
 
-/* Task 1b: use your function to create 3 more menu items. You may add any items to the menu that you'd like */
 
+/* Task 1b: use your function to create 3 more menu items. You may add any items to the menu that you'd like */
+console.log(createMenuItem('Cheese', 2, 'Snack'));
+console.log(createMenuItem('Crackers', 2, 'Snack'));
+console.log(createMenuItem('Banana', 1.5, 'Snack'));
 
 
 /* Task 2: You're having a lunch special! 25% off for teachers and students, 10% off for everyone else. Add a method to your burger object that automatically calculates price given a string as a parameter. 
@@ -23,7 +27,22 @@ Your method should accept:
 and should return a number. 
 
 For example, burger.discount("teacher") would return 13.5 and burger.discount("public") would return 16.2*/
+burger.discount = function(typeOfCustomer){
+  if (typeOfCustomer === `Student`){
+    return burger.price - 4.5;
+  } else if (typeOfCustomer === `Teacher`){
+    return burger.price - 4.5;
+  } else {
+    return burger.price - 1.8;
+  }
+}
+let studentDis = burger.discount('Student');
+let teacherDis = burger.discount('Teacher');
+let regularDis = burger.discount('Public');
 
+console.log(`Student discount is $${studentDis}.`)
+console.log(`Teacher discount is $${teacherDis}.`);
+console.log(`Regular customer discount is $${regularDis}.`);
 
 
 ///////////////Reviews (MVP)///////////////////
@@ -60,15 +79,16 @@ and should return a string in the format `{name} gave the restaurant a {rating},
 */
 function getReviewByIndex(reviews, index) {
     /* code here */
+    return `${reviews[index].name} gave the restaurant a ${reviews[index].rating} star review and their feedback was: ${reviews[index].feedback}`
   }
-  
+  console.log(getReviewByIndex(reviews, 5));
 
 /* Task 7: Write a function to get information about the most recent review called `getLastReview`
 
 getLastReview should accept:
   (1) an array of objects 
   
-and should return a string in the format `name} gave the restaurant a {rating}, and their feedback was: {feedback}`
+and should return a string in the format {name} gave the restaurant a {rating}, and their feedback was: {feedback}`
 
 For example, if getLastReview is invoked passing the reviews array it will return `Reyna gave the restaurant a 3.5 star review and their feedback was: "this place is chill with really cool people, great for getting work done on weekdays"`.
 */
